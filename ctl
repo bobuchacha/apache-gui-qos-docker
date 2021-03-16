@@ -57,4 +57,6 @@ elif [ $command = "push" ]; then
     git commit -m $COMMIT_MSG
     git push
 
+elif [ $command = "pull" ]; then
+    git pull
 fi
