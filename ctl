@@ -1,4 +1,6 @@
 #! /bin/bash
+set -e
+
 command=$1
 IMAGE_TAG="thang:apache-server"
 CONTAINER_NAME="apache-good"
@@ -41,5 +43,18 @@ elif [ $command = "run" ]; then
 elif [ $command = "rm" ]; then
     stop
     docker container rm $CONTAINER_NAME
+
+elif [ $command = "push" ]; then
+
+    COMMIT_MSG=$2
+    
+    if [ ! $COMMIT_MSG ]; 
+    then 
+        COMMIT_MSG="Commit" 
+    fi
+
+    git add .
+    git commit -m $COMMIT_MSG
+    git push
 
 fi
