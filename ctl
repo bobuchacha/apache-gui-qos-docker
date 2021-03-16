@@ -24,7 +24,7 @@ elif [ $command = "restart" ]; then
 elif [ $command = "sh" ]; then
     docker container exec -it $CONTAINER_NAME bash
 
-elif [ $command = "sh" ]; then
+elif [ $command = "run" ]; then
     docker run -d \
     -it \
     --name $CONTAINER_NAME \
@@ -32,10 +32,8 @@ elif [ $command = "sh" ]; then
     -p 443:443/tcp \
     -p 9999:9999/tcp \
     --memory=8g \
-    --memory-swap=2g \
     --memory-reservation=2g \
-    --kernel-memory=512m \
-    --cpus=8 \
+    --cpus=4 \
     --mount type=bind,source="$(pwd)"/inetpub/wwwroot,target=/inetpub/wwwroot \
     --mount type=bind,source="$(pwd)"/apache,target=/etc/apache2 \
     $IMAGE_TAG
