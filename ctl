@@ -59,4 +59,6 @@ elif [ $command = "push" ]; then
 
 elif [ $command = "pull" ]; then
     git pull
+else
+    echo "Command invalid"    
 fi
